@@ -1,0 +1,314 @@
+local Library = {}
+
+local TS = game:GetService("TweenService")
+local UIS = game:GetService("UserInputService")
+local mouse = game.Players.LocalPlayer:GetMouse()
+
+function Library:Create(hubname)
+	
+local Dlib = Instance.new("ScreenGui")
+local MainTop = Instance.new("Frame")
+local Tabs = Instance.new("Frame")
+local MainTabFrame = Instance.new("ScrollingFrame")
+local UIListLayout = Instance.new("UIListLayout")
+local NavigationGradient = Instance.new("UIGradient")
+local MainTitle = Instance.new("Frame")
+local TitleText = Instance.new("TextLabel")
+local CloseButton = Instance.new("TextButton")
+local UIGradient = Instance.new("UIGradient")
+local Main = Instance.new("Frame")
+local TabsContets = Instance.new("Frame")
+local TitleGradient = Instance.new("UIGradient")
+
+
+
+Dlib.Name = "NullwareLib"
+if syn.protect_gui then
+	syn.protect_gui(Dlib)
+	Dlib.Parent = game:GetService("CoreGui")
+elseif gethui then
+	Dlib.Parent = gethui()
+	Dlib.Parent = game:GetService("CoreGui")
+else
+
+end
+Dlib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+MainTop.Name = "MainTop"
+MainTop.Parent = Dlib
+MainTop.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+MainTop.BackgroundTransparency = 1.000
+MainTop.BorderSizePixel = 0
+MainTop.Position = UDim2.new(0.400000006, -283, 0.25, 105)
+MainTop.Size = UDim2.new(0, 370, 0, 40)
+
+Tabs.Name = "Tabs"
+Tabs.Parent = MainTop
+Tabs.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Tabs.BorderSizePixel = 0
+Tabs.Position = UDim2.new(0, 0, 0, 20)
+Tabs.Size = UDim2.new(1, 0, 0, 20)
+
+MainTabFrame.Name = "MainTabFrame"
+MainTabFrame.Parent = Tabs
+MainTabFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+MainTabFrame.BackgroundTransparency = 1.000
+MainTabFrame.BorderSizePixel = 0
+MainTabFrame.Position = UDim2.new(0.0298867654, 0, 0.150000006, 0)
+MainTabFrame.Size = UDim2.new(0.94022733, 0, 0.699999988, 0)
+MainTabFrame.ScrollBarThickness = 1
+
+UIListLayout.Parent = MainTabFrame
+UIListLayout.FillDirection = Enum.FillDirection.Horizontal
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+NavigationGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(250, 6, 6)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(122, 0, 0))}
+NavigationGradient.Name = "NavigationGradient"
+NavigationGradient.Parent = Tabs
+
+MainTitle.Name = "MainTitle"
+MainTitle.Parent = MainTop
+MainTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+MainTitle.BorderSizePixel = 0
+MainTitle.Size = UDim2.new(1, 0, 0, 20)
+
+TitleText.Name = "TitleText"
+TitleText.Parent = MainTitle
+TitleText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TitleText.BackgroundTransparency = 1.000
+TitleText.BorderSizePixel = 0
+TitleText.Position = UDim2.new(0.100000031, 0, 0.0149998385, 0)
+TitleText.Size = UDim2.new(0.800000012, 0, 0.955000043, 0)
+TitleText.Font = Enum.Font.GothamBold
+TitleText.Text = hubname
+TitleText.TextColor3 = Color3.fromRGB(255, 255, 255)
+TitleText.TextSize = 14.000
+TitleText.TextWrapped = true
+
+CloseButton.Name = "CloseButton"
+CloseButton.Parent = MainTitle
+CloseButton.Active = false
+CloseButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+CloseButton.BackgroundTransparency = 1.000
+CloseButton.BorderSizePixel = 0
+CloseButton.Position = UDim2.new(0.949999988, 0, 0.0149999997, 0)
+CloseButton.Size = UDim2.new(0.0405650735, 0, 0.955178499, 0)
+CloseButton.Font = Enum.Font.GothamBold
+CloseButton.Text = "×"
+CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+CloseButton.TextSize = 14.000
+CloseButton.TextWrapped = true
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(166, 0, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 0, 16))}
+UIGradient.Parent = MainTitle
+
+Main.Name = "Main"
+Main.Parent = MainTop
+Main.BackgroundColor3 = Color3.fromRGB(3, 3, 3)
+Main.BorderSizePixel = 0
+Main.Position = UDim2.new(0, 0, 1, 0)
+Main.Size = UDim2.new(1, 0, 0, 175)
+
+TabsContets.Name = "TabsContets"
+TabsContets.Parent = Main
+TabsContets.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TabsContets.BackgroundTransparency = 1.000
+TabsContets.BorderSizePixel = 0
+TabsContets.Size = UDim2.new(1, 0, 1, 0)
+
+TitleGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(226, 0, 59)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(226, 0, 117))}
+TitleGradient.Name = "TitleGradient"
+TitleGradient.Parent = Dlib
+
+local function FWMOC_fake_script() 
+	local script = Instance.new('LocalScript', MainTop)
+
+	local UIS = game:GetService('UserInputService')
+	local frame = script.Parent
+	local dragToggle = nil
+	local dragSpeed = 0.25
+	local dragStart = nil
+	local startPos = nil
+	
+	local function updateInput(input)
+		local delta = input.Position - dragStart
+		local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+			startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+		game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
+	end
+	
+	frame.InputBegan:Connect(function(input)
+		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
+			dragToggle = true
+			dragStart = input.Position
+			startPos = frame.Position
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragToggle = false
+				end
+			end)
+		end
+	end)
+	
+	UIS.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			if dragToggle then
+				updateInput(input)
+			end
+		end
+	end)
+end
+coroutine.wrap(FWMOC_fake_script)()
+	
+	CloseButton.MouseButton1Click:connect(function() Dlib:Destroy() end)
+	
+	local Win = {}
+	
+	function Win:Tab(TabText)
+		
+		local UIListLayout = Instance.new("UIListLayout")
+local SpacingFrame = Instance.new("Frame")
+local SpacingFrame_2 = Instance.new("Frame")
+local Tab1 = Instance.new("TextButton")
+
+
+UIListLayout.Parent = MainTabFrame
+UIListLayout.FillDirection = Enum.FillDirection.Horizontal
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+SpacingFrame.Name = "SpacingFrame"
+SpacingFrame.Parent = MainTabFrame
+SpacingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SpacingFrame.BackgroundTransparency = 1.000
+SpacingFrame.BorderSizePixel = 0
+SpacingFrame.Size = UDim2.new(0, 1, 0, 13)
+
+SpacingFrame_2.Name = "SpacingFrame"
+SpacingFrame_2.Parent = MainTabFrame
+SpacingFrame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SpacingFrame_2.BackgroundTransparency = 1.000
+SpacingFrame_2.BorderSizePixel = 0
+SpacingFrame_2.Size = UDim2.new(0, 5, 0, 13)
+
+Tab1.Name = "Tab1"
+Tab1.Parent = MainTabFrame
+Tab1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Tab1.BackgroundTransparency = 1.000
+Tab1.BorderSizePixel = 0
+Tab1.Size = UDim2.new(0, 0, 0, 13)
+Tab1.AutoButtonColor = false
+Tab1.Font = Enum.Font.GothamMedium
+Tab1.Text = TabText
+Tab1.TextColor3 = Color3.fromRGB(252, 0, 0)
+Tab1.TextSize = 12.000
+
+local TAB1 = Instance.new("ScrollingFrame")
+local TabContentListing = Instance.new("UIListLayout")
+
+TAB1.Name = "TAB1"
+TAB1.Parent = TabsContets
+TAB1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TAB1.BackgroundTransparency = 1.000
+TAB1.BorderSizePixel = 0
+TAB1.Position = UDim2.new(0, 0, 0.0399999991, 0)
+TAB1.Size = UDim2.new(1, 0, 0.939999998, 0)
+TAB1.CanvasSize = UDim2.new(0, 0, 1, 0)
+TAB1.ScrollBarThickness = 2
+
+TabContentListing.Name = "TabContentListing"
+TabContentListing.Parent = TAB1
+TabContentListing.HorizontalAlignment = Enum.HorizontalAlignment.Center
+TabContentListing.SortOrder = Enum.SortOrder.LayoutOrder
+TabContentListing.Padding = UDim.new(0, 5)
+		
+
+ local sectio = {}
+
+
+ function sectio:Section(SecText)
+
+	local Section = Instance.new("Frame")
+local UIListLayout = Instance.new("UIListLayout")
+local SectionName = Instance.new("TextLabel")
+local SectironHere = Instance.new("Frame")
+local UIListLayout_2 = Instance.new("UIListLayout")
+
+
+Section.Name = "Section"
+Section.Parent = TAB1
+Section.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Section.BackgroundTransparency = 1.000
+Section.BorderSizePixel = 0
+Section.Position = UDim2.new(0.450000048, 0, 0, 0)
+Section.Size = UDim2.new(1, 0, 0, 0)
+
+UIListLayout.Parent = Section
+UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.Padding = UDim.new(0, 3)
+
+SectionName.Name = "SectionName"
+SectionName.Parent = Section
+SectionName.BackgroundColor3 = Color3.fromRGB(13, 13, 13)
+SectionName.BorderSizePixel = 0
+SectionName.LayoutOrder = 1
+SectionName.Size = UDim2.new(0.955000043, 0, 0, 20)
+SectionName.Font = Enum.Font.GothamMedium
+SectionName.Text = SecText
+SectionName.TextColor3 = Color3.fromRGB(255, 255, 255)
+SectionName.TextSize = 14.000
+
+SectironHere.Name = "SectironHere"
+SectironHere.Parent = Section
+SectironHere.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SectironHere.BackgroundTransparency = 1.000
+SectironHere.BorderSizePixel = 0
+SectironHere.LayoutOrder = 2
+SectironHere.Position = UDim2.new(0.450000048, 0, 0, 0)
+SectironHere.Size = UDim2.new(1, 0, 0, 0)
+
+UIListLayout_2.Parent = SectironHere
+UIListLayout_2.HorizontalAlignment = Enum.HorizontalAlignment.Center
+UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout_2.Padding = UDim.new(0, 3)
+	
+
+		local PageItems = {} 
+			
+		function PageItems:Button(buttonname, callback)
+			
+			local callback = callback or function() end
+			
+			local BUTTO = Instance.new("TextButton")
+
+			BUTTO.Name = "button"
+BUTTO.Parent = SectironHere
+BUTTO.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+BUTTO.BorderSizePixel = 0
+BUTTO.Position = UDim2.new(0.0399999991, 0, 0.491525412, 0)
+BUTTO.Size = UDim2.new(0.955000043, 0, 0, 20)
+BUTTO.Font = Enum.Font.Gotham
+BUTTO.Text = buttonname
+BUTTO.TextColor3 = Color3.fromRGB(255, 255, 255)
+BUTTO.TextSize = 14.000
+			
+BUTTO.MouseButton1Click:Connect(function()
+				pcall(callback)
+			end)
+			
+			
+		end
+		
+		return PageItems
+
+		end
+		
+		return sectio
+
+	end
+	
+	return Win
+	
+end
+
+return Library
