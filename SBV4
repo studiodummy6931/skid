@@ -1,3 +1,15 @@
+-- -gh 7667522361
+local function Align(Handle, Where, Pos, Rot)
+	Handle:BreakJoints()
+	Handle.CFrame = Where.CFrame *Pos *Rot
+end
+
+task.spawn(function()
+	while task.wait() do
+		Align(game.Players.LocalPlayer.Character["scytheblack"].Handle, game.Players.LocalPlayer.Character["Right Arm"], CFrame.new(0, -1.80, -0.5), CFrame.Angles(0, 190, -95.75))
+	end
+end)
+
 Bypass = "death"
 loadstring(game:GetObjects("rbxassetid://5325226148")[1].Source)()
 for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
