@@ -1,0 +1,74 @@
+game.Players.LocalPlayer.Character["RunningBull"].Handle.Mesh:Destroy()
+game.TestService.IsSleepAllowed = false
+for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
+	if v:IsA("BasePart") then 
+		game:GetService("RunService").Heartbeat:connect(function()
+			v.Velocity = Vector3.new(-40,0,-10)
+			pcall(function()
+				v.CanCollide = false
+			end)
+			pcall(function()
+				v.CanQuery = false
+			end)
+		end)
+	end
+end
+
+Bypass = "death"
+loadstring(game:GetObjects("rbxassetid://5325226148")[1].Source)()
+local IsDead = false
+local StateMover = true
+local playerss = workspace.non
+local bbv,bullet
+if Bypass == "death" then
+	bullet = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+	bullet.Color = Color3.new()
+	bullet.Transparency = .75
+	bullet.Material = "Neon"
+	bullet.Massless = true
+
+	local Sphere = game:GetObjects("rbxassetid://9418986037")[1]
+	Sphere.Parent = nil
+	Sphere.Adornee = nil
+	Sphere.Color3 = Color3.fromRGB(0,0,0)
+	Sphere.Radius = .5
+	if bullet:FindFirstChildOfClass("Attachment") then
+		for _,v in pairs(bullet:GetChildren()) do
+			if v:IsA("Attachment") then
+				v:Destroy()
+			end
+		end
+	end
+
+	bbv = Instance.new("BodyPosition",bullet)
+	bbv.Position = playerss.Torso.CFrame.p
+end
+
+if Bypass == "death" then
+	coroutine.wrap(function()
+		while true do
+			if not playerss or not playerss:FindFirstChildOfClass("Humanoid") or playerss:FindFirstChildOfClass("Humanoid").Health <= 0 then IsDead = true; return end
+			if StateMover then
+				bbv.Position = playerss.Torso.CFrame.p + Vector3.new(0,5,0)
+				bullet.Position = playerss.Torso.CFrame.p + Vector3.new(0,5,0)
+			end
+			game:GetService("RunService").RenderStepped:wait()
+		end
+	end)()
+end
+
+local CDDF = {}
+
+
+for i,v in next, playerss:GetDescendants() do
+	if v:IsA("BasePart") then 
+		game:GetService("RunService").Heartbeat:connect(function()
+			pcall(function()
+				v.CanCollide = false
+			end)
+			pcall(function()
+				v.CanQuery = false
+			end)
+		end)
+	end
+end
