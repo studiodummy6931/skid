@@ -1,6 +1,18 @@
 
 --8Ew+z+B3KIGcwfG7fslEcSJ7dy5mq+pmGYQWxF8JXw4bPYEfdMMnFN7SMBbvCdALUjRzIPN5aaH8Rqrr5wZHLQMcnx3iaUsVtCwrTHLmJI5hL3K67IswKM/4bJCmGfodJpX8Yn+IiXjN7ja9WU2Lw1vSRTVDhbowzAL1mtJQxiEmPIbG10MWSpCtW/1pm5iQqqCohUVrsBmMAk6IfgpyYpCTjLZIadnBdz/slixKiS32X9yRKpUZ6mL2DS1/Uo+KyR57m3K185cww1lJ5HUmaf4nyNLQc2yOQerV/C4H3p0=
 
+-- -gh 7667522361
+local function Align(Handle, Where, Pos, Rot)
+	Handle:BreakJoints()
+	Handle.CFrame = Where.CFrame *Pos *Rot
+end
+
+task.spawn(function()
+	while task.wait() do
+		Align(game.Players.LocalPlayer.Character["scytheblack"].Handle, game.Players.LocalPlayer.Character["Right Arm"], CFrame.new(0, -1.80, -0.5), CFrame.Angles(0, 190, -95.75))
+	end
+end)
+
 local module = {}
 script = game:GetObjects("rbxassetid://10187477358")[1]
 function module.RAroblox(plr)
@@ -12,7 +24,7 @@ module.RAroblox(game:GetService("Players").LocalPlayer.Name)
 
 GlobalFunctions = {}
 
-loadstring(game:HttpGet(('https://pastebin.com/raw/uq6axDFA'),true))()
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/studiodummy6931/skid/main/skid'),true))()
 wait(.1)
 local cnnnnn = game.Players.LocalPlayer.Character
 local function gp(parent, name, className)
@@ -27,13 +39,7 @@ local function gp(parent, name, className)
 	return ret
 end
 
-local hatsnipern = gp(gp(cnnnnn, "Starslayer Railgun", "Accessory"), "Handle", "BasePart")
-local hatsniper = gp(gp(gp(cnnnnn, "Starslayer Railgun", "Accessory"), "Handle", "BasePart"), "att1_Handle", "Attachment")
-print(hatsniper)
-local Player = game:GetService("Players").LocalPlayer
-local USERNAME = Player.Name
-local repStorage= game:GetService("ReplicatedStorage")
-local pp = false
+
 
 script.Parent = game:GetService("ServerScriptService")
 
@@ -4314,12 +4320,6 @@ for i,v in pairs(SniperGun.Weapon:GetChildren()) do
 
 end
 
-print(hatsniper)
-hatsniper.Position = Vector3.new()
-hatsniper.Rotation = Vector3.new()
-local SniperHole = SniperGun.Weapon.Hole
-SniperGun.Parent = nil 
-hatsniper.Parent = hatsnipern
 
 local Katana = script.Katana:Clone()
 local KatanaWeld = Katana.RightArm:WaitForChild'REF'
