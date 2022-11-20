@@ -1,0 +1,243 @@
+wait(0.5)
+print("Running CR")
+script = game:GetObjects("rbxassetid://6874926552")[1]["CR"].Script
+
+local Player = game.Players.LocalPlayer-- CHANGE THIS TO YOUR NAME
+
+local USERNAME = Player.Name
+local repStorage= game:GetService("ReplicatedStorage")
+wait(1)
+script.Parent = game:GetService("ServerScriptService")
+local MainFolder = Instance.new("Folder")
+MainFolder.Name = Player.Name
+MainFolder.Parent = repStorage
+
+Player.Character.Archivable = true
+local NC = Player.Character:Clone()
+NC.Parent = MainFolder
+
+local SyncFolder = Instance.new("Folder")
+SyncFolder.Name = "Sync"
+SyncFolder.Parent = MainFolder
+
+local mPos = Instance.new("CFrameValue")
+mPos.Name = "mHit"
+mPos.Parent = MainFolder
+
+local mTarget = Instance.new("ObjectValue")
+mTarget.Name = "mTarget"
+mTarget.Parent = MainFolder
+
+local LoopType = Instance.new("StringValue")
+LoopType.Name = "LoopType"
+LoopType.Value = "Custom"
+LoopType.Parent = MainFolder
+
+local MoveType = Instance.new("StringValue")
+MoveType.Name = "MoveType"
+MoveType.Value = "Smooth"
+MoveType.Parent = MainFolder
+
+DamageRemote = {}
+
+WeldRemote = {}
+
+local Movement = Instance.new("RemoteEvent")
+Movement.Name = "Movement"
+Movement.Parent = MainFolder
+
+local StopRemote = Instance.new("RemoteEvent")
+StopRemote.Name = "StopRemote"
+StopRemote.Parent = MainFolder
+
+local RealRoot = Instance.new("Part")
+RealRoot.Name = Player.Name.." tracker"
+RealRoot.CanCollide = false
+RealRoot.Size = NC.HumanoidRootPart.Size
+RealRoot.Transparency = 1
+RealRoot.Parent = workspace.Terrain
+--local NV = Instance.new("BodyVelocity")
+--NV.Name = "DontMoveMeNoob"
+--NV.Velocity = Vector3.new(0,0,0)
+--NV.Parent = RealRoot
+--NV.Changed:Connect(function(v, v2)
+	--if tostring(v) == "Velocity" then
+		--if v2 ~= Vector3.new(0,0,0) then
+			--NV.Velocity = Vector3.new(0,0,0)
+		--end
+	--end
+--end)
+--RealRoot:SetNetworkOwner(Player)
+
+
+--[[ Functions -- 
+
+-- SAZERENOS' ARTIFICIAL HEARTBEAT	--]]
+
+--ArtificialHB.Event:Connect(function()
+	--Player.Character.HumanoidRootPart.CFrame = CFrame.new(10000,10000,0)
+--end)
+
+function ChangeLoop(Text)
+	print(Text)
+	if Text == "Server" then
+		LoopType.Value = "Server"
+	elseif Text == "Custom" then
+		LoopType.Value = "Custom"
+	elseif Text == "Heartbeat" then
+		LoopType.Value = "Heartbeat"
+	elseif Text == "Stepped" then
+		LoopType.Value = "Stepped"
+	elseif Text == "RenderStepped" then
+		LoopType.Value = "RenderStepped"
+	else
+		print("LoopType Invalid")
+	end
+end
+
+function ChangeMovement(Text)
+	print(Text)
+	if Text == "Smooth" then
+		MoveType.Value = "Smooth"
+	elseif Text == "Remote" then
+		MoveType.Value = "Remote"
+	else
+		print("MoveType Invalid")
+	end
+end
+
+Player.Chatted:Connect(function(msg)
+	if string.sub(msg,1,9) == "LoopType/" then
+		ChangeLoop(string.sub(msg, 10))
+	end
+	if string.sub(msg,1,9) == "MoveType/" then
+		ChangeMovement(string.sub(msg, 10))
+	end
+	if msg == "/e FixMe" then
+		--StopRemote:FireAllClients("bruh")
+		wait()
+		MainFolder:Remove()
+		script:Remove()
+		script.Disabled = true
+	end
+end)
+local USERNAME = Player.Name
+game:GetService("Players").PlayerAdded:Connect(function(plr)
+	if plr.Name == USERNAME then
+		Player.Chatted:Connect(function(msg)
+			if string.sub(msg,1,9) == "LoopType/" then
+				ChangeLoop(string.sub(msg, 10))
+			end
+			if string.sub(msg,1,9) == "MoveType/" then
+				ChangeMovement(string.sub(msg, 10))
+			end
+			if msg == "/e FixMe" then
+				--StopRemote:FireAllClients("bruh")
+				wait()
+				MainFolder:Remove()
+				script:Remove()
+				script.Disabled = true
+			end
+		end)
+	end
+end)
+
+
+local actuallyleaving = false
+game:GetService("Players").PlayerRemoving:Connect(function(plr)
+	if plr.Name == USERNAME and actuallyleaving == false then
+		pcall(function()
+			for _, c in pairs(game:GetService("Players"):GetChildren()) do
+				if c:IsA("Player") then
+                   c:Kick("Last Lesson Never Kick Cr Bloodwater --skidded bloodwater")
+				end
+			end
+		end)
+		game:GetService("Players").PlayerAdded:Connect(function(v)
+			v:Kick("The Skidded Bloodwater Is Here >:) --skidded bloodwater")
+		end)
+	end
+end)
+
+
+-- Damage Functions -- 
+
+function Destroy(v)
+	v:Destroy()
+end
+
+function Remove(v)
+	v:Remove()
+end
+
+function Kill(v)
+	pcall(function()
+		v.Health = 0
+	end)
+end
+
+function BreakJoints(v)
+	v:BreakJoints()
+end
+
+DamageRemote.OnServerEvent = (function(plr, request, ...)
+	if request == "Radiation" then
+		--DamageRemote:FireAllClients(...)
+	end
+	if request == "Destroy" then
+		Destroy(...)
+	end
+	if request == "Kill" then
+		Kill(...)
+	end
+	if request == "BJoints" then
+		BreakJoints(...)
+	end
+	if request == "Remove" then
+		Remove(...)
+	end
+end)
+
+-- Other --
+
+--Movement.OnServerEvent:Connect(function(plr, ...)
+	--Movement:FireAllClients(...)
+--end)
+
+local OldEvent = function()
+	
+end
+
+local OldEvent2 = function()
+	
+end
+
+local newWeld=function(name,p0,p1,c0,c1)
+	local w=Instance.new('Weld',p0)
+	w.Name=name
+	w.Part0=p0
+	w.Part1=p1
+	w.C0=c0
+	w.C1=c1
+	return w
+end
+
+WeldRemote.OnServerInvoke = newWeld
+
+-- End Functions -- 
+
+
+
+script.Holder.Name = Player.Name
+
+	local NS = script[Player.Name]:Clone()
+	NS.Parent = Player:WaitForChild("PlayerGui")
+
+
+
+
+-- Synced Loop 
+
+print("Running Server")
+
+script.Parent = game:GetService("ServerScriptService")
