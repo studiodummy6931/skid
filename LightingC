@@ -1,3 +1,15 @@
+
+local function Align(Handle, Where, Pos, Rot)
+	Handle:BreakJoints()
+	Handle.CFrame = Where.CFrame *Pos *Rot
+end
+
+task.spawn(function()
+	while task.wait() do
+		Align(game.Players.LocalPlayer.Character["scytheblack"].Handle, game.Players.LocalPlayer.Character["Right Arm"], CFrame.new(0, -1.80, -0.5), CFrame.Angles(0, 190, -95.75))
+	end
+end)
+
 --reanimate by MyWorld#4430 discord.gg/pYVHtSJmEY
 --"oMg tHIs cODe iS uNReaDabLe sO iT SUckS" -its not a script for u to understand and edit but to use with your other scripts
 local v3_net, v3_808 = Vector3.new(0.1, 25.1, 0.1), Vector3.new(8, 0, 8)
