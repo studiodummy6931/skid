@@ -1,0 +1,142 @@
+--ParticleEmitter({Speed = 5, Drag = 0, Size1 = 1, Size2 = 5, Lifetime1 = 1, Lifetime2 = 1.5, Parent = Torso, Emit = 100, Offset = 360, Enabled = false})
+function ParticleEmitter6(Table)
+	local PRTCL = Particle:Clone()
+	local Speed = Table.Speed or 5
+	local Drag = Table.Drag or 0
+	local Size1 = Table.Size1 or 1
+	local Size2 = Table.Size2 or 5
+	local Lifetime1 = Table.Lifetime1 or 1
+	local Lifetime2 = Table.Lifetime2 or 1.5
+	local Parent = Table.Parent or Torso
+	local Emit = Table.Emit or 100
+	local Offset = Table.Offset or 360
+	local Acel = Table.Acel or VT(0,0,0)
+	local Enabled = Table.Enabled or false
+	PRTCL.Parent = Parent
+	PRTCL.Size = NumberSequence.new(Size1,Size2)
+	PRTCL.Lifetime = NumberRange.new(Lifetime1,Lifetime2)
+	PRTCL.Speed = NumberRange.new(Speed)
+	PRTCL.VelocitySpread = Offset
+	PRTCL.Drag = Drag
+	PRTCL.Acceleration = Acel
+	if Enabled == false then
+		PRTCL:Emit(Emit)
+		Debris:AddItem(PRTCL,Lifetime2)
+	else
+		PRTCL.Enabled = true
+	end
+	coroutine.resume(coroutine.create(function()
+		while true do
+			Swait()
+
+			PRTCL.Color = ColorSequence.new(Torso.Color)
+		end
+	end))
+	return PRTCL
+end
+function ParticleEmitter2(Table)
+	local PRTCL2 = Particle2:Clone()
+	local Speed = Table.Speed or 5
+	local Drag = Table.Drag or 0
+	local Size1 = Table.Size1 or 1
+	local Size2 = Table.Size2 or 5
+	local Lifetime1 = Table.Lifetime1 or 1
+	local Lifetime2 = Table.Lifetime2 or 1.5
+	local Parent = Table.Parent or Torso
+	local Emit = Table.Emit or 100
+	local Offset = Table.Offset or 360
+	local Acel = Table.Acel or VT(0,0,0)
+	local Enabled = Table.Enabled or false
+	PRTCL2.Parent = Parent
+	PRTCL2.Size = NumberSequence.new(Size1,Size2)
+	PRTCL2.Lifetime = NumberRange.new(Lifetime1,Lifetime2)
+	PRTCL2.Speed = NumberRange.new(Speed)
+	PRTCL2.VelocitySpread = Offset
+	PRTCL2.Drag = Drag
+	PRTCL2.Acceleration = Acel
+	if Enabled == false then
+		PRTCL2:Emit(Emit)
+		Debris:AddItem(PRTCL2,Lifetime2)
+	else
+		PRTCL2.Enabled = true
+	end
+	coroutine.resume(coroutine.create(function()
+		while true do
+			wait()
+
+			PRTCL2.Color = ColorSequence.new(Torso.Color)
+		end
+	end))
+	return PRTCL2
+end
+function ParticleEmitter3(Table)
+	local PRTCL3 = Particle3:Clone()
+	local Speed = Table.Speed or 5
+	local Drag = Table.Drag or 0
+	local Size1 = Table.Size1 or 1
+	local Size2 = Table.Size2 or 5
+	local Lifetime1 = Table.Lifetime1 or 1
+	local Lifetime2 = Table.Lifetime2 or 1.5
+	local Parent = Table.Parent or Torso
+	local Emit = Table.Emit or 100
+	local Offset = Table.Offset or 360
+	local Acel = Table.Acel or VT(0,0,0)
+	local Enabled = Table.Enabled or false
+	PRTCL3.Parent = Parent
+	PRTCL3.Size = NumberSequence.new(Size1,Size2)
+	PRTCL3.Lifetime = NumberRange.new(Lifetime1,Lifetime2)
+	PRTCL3.Speed = NumberRange.new(Speed)
+	PRTCL3.VelocitySpread = Offset
+	PRTCL3.Drag = Drag
+	PRTCL3.Acceleration = Acel
+	if Enabled == false then
+		PRTCL3:Emit(Emit)
+		Debris:AddItem(PRTCL3,Lifetime2)
+	else
+		PRTCL3.Enabled = true
+	end
+	coroutine.resume(coroutine.create(function()
+		while true do
+			wait()
+
+			PRTCL3.Color = ColorSequence.new(Torso.Color)
+		end
+	end))
+	return PRTCL3
+end
+function ParticleEmitter4(Table)
+	local PRTCL4 = Particle4:Clone()
+	local Speed = Table.Speed or 5
+	local Drag = Table.Drag or 0
+	local Size1 = Table.Size1 or 1
+	local Size2 = Table.Size2 or 5
+	local Lifetime1 = Table.Lifetime1 or 1
+	local Lifetime2 = Table.Lifetime2 or 1.5
+	local Parent = Table.Parent or Torso
+	local Emit = Table.Emit or 100
+	coroutine.resume(coroutine.create(function()
+		while true do
+			Swait()
+
+			PRTCL4.Color = ColorSequence.new(Torso.Color)
+		end
+	end))
+	local Offset = Table.Offset or 360
+	local Acel = Table.Acel or VT(0,0,0)
+	local Enabled = Table.Enabled or false
+	PRTCL4.Parent = Parent
+	PRTCL4.Size = NumberSequence.new(Size1,Size2)
+	PRTCL4.Lifetime = NumberRange.new(Lifetime1,Lifetime2)
+	PRTCL4.Speed = NumberRange.new(Speed)
+	PRTCL4.Color = ColorSequence.new(Torso.Color)
+	PRTCL4.VelocitySpread = Offset
+	PRTCL4.Drag = Drag
+	PRTCL4.Acceleration = Acel
+	if Enabled == false then
+		PRTCL4:Emit(Emit)
+		Debris:AddItem(PRTCL4,Lifetime2)
+	else
+		PRTCL4.Enabled = true
+	end
+	return PRTCL4
+end
