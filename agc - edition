@@ -1,0 +1,516 @@
+		elseif origpos == nil then
+			warn("Origpos is nil!")
+		end
+	end)
+end
+function MakeForm(PART,TYPE)
+	if TYPE == "Cyl" then
+		local MSH = IT("CylinderMesh",PART)
+	elseif TYPE == "Ball" then
+		local MSH = IT("SpecialMesh",PART)
+		MSH.MeshType = "Sphere"
+	elseif TYPE == "Wedge" then
+		local MSH = IT("SpecialMesh",PART)
+		MSH.MeshType = "Wedge"
+	end
+end
+
+function SpawnTrail(FROM,TO,BIG)
+	local TRAIL = CreatePart(3, Effects, "Neon", 0, 0.5, "Really black", "Trail", VT(0,0,0))
+	MakeForm(TRAIL,"Cyl")
+	local DIST = (FROM - TO).Magnitude
+	if BIG == true then
+		TRAIL.Size = VT(0.5,DIST,0.5)
+	else
+		TRAIL.Size = VT(0.25,DIST,0.25)
+	end
+	TRAIL.CFrame = CF(FROM, TO) * CF(0, 0, -DIST/2) * ANGLES(RAD(90),RAD(0),RAD(0))
+	task.spawn(function()
+		for i = 1, 5 do
+			Swait()
+			TRAIL.Transparency = TRAIL.Transparency + 0.1
+		end
+		TRAIL:remove()
+	end)
+end
+
+function SpawnTrail2(FROM2,TO2,BIG2)
+	local TRAIL = CreatePart(3, Effects, "Neon", 0, 0.5, BrickColor.Random(), "Trail", VT(0,0,0))
+	MakeForm(TRAIL,"Cyl")
+	local DIST = (FROM2 - TO2).Magnitude
+	if BIG2 == true then
+		TRAIL.Size = VT(5,DIST,5)
+	else
+		TRAIL.Size = VT(5,DIST,5)
+	end
+	TRAIL.CFrame = CF(FROM2, TO2) * CF(0, 0, -DIST/2) * ANGLES(RAD(90),RAD(0),RAD(0))
+	task.spawn(function()
+		for i = 1, 5 do
+			Swait()
+			TRAIL.Transparency = TRAIL.Transparency + 0.1
+		end
+		TRAIL:remove()
+	end)
+end
+Debris = game:GetService("Debris")
+
+function CastProperRay(StartPos, EndPos, Distance, Ignore)
+	local DIRECTION = CF(StartPos,EndPos).lookVector
+	return Raycast(StartPos, DIRECTION, Distance, Ignore)
+end
+
+function turnto(position)
+	RootPart.CFrame=CFrame.new(RootPart.CFrame.p,VT(position.X,RootPart.Position.Y,position.Z)) * CFrame.new(0, 0, 0)
+end
+
+--//=================================\\
+--||	     WEAPON CREATION
+--\\=================================//
+
+local Scarf = CreatePart(3, Torso, "Neon", 0, 0, "Deep orange", "Eye", VT(1,1,1),false)
+coroutine.resume(coroutine.create(function()
+	while true do
+		Swait()
+		if mde == "Corrupt" or mde == "Dep"  then
+			local val = MRANDOM(1,255)
+			Scarf.Color = Color3.fromRGB(val,val,val)
+		elseif mde == "Relaxed" or mde == "C" then
+			Scarf.Color = color
+		elseif mde == "Insanity" or mde == "krma" or mde == "X" then
+			Scarf.Color = BrickColor.random().Color
+		elseif mde == "Vis" then
+			Scarf.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+		elseif mde == "Sit" then
+			Scarf.Color = Color3.fromHSV(Hue/360,1,math.clamp(sick.PlaybackLoudness/950,0,1))
+		elseif mde == 'error' then
+			Scarf.Color = Color3.fromRGB(0,math.random(0,255),0)
+		elseif mde == 'nebula' then
+			Scarf.Color = Color3.fromRGB(math.random(0,255),0,0)
+		elseif mde == "???" then
+			Scarf.Color = C3(100*sick.PlaybackLoudness/10000,0,0)
+		elseif mde == 'Rev' then
+			Scarf.Color = Color3.fromRGB(0+178*sick.PlaybackLoudness/100,0,0)
+		elseif mde == 'mnlght' then
+			Scarf.Color = Color3.fromRGB(0,0+89*sick.PlaybackLoudness/100,0+18*sick.PlaybackLoudness/100)
+		elseif mde == 'death' then
+			Scarf.Color = BrickColor.Random().Color
+		elseif mde == "monster" then
+			Scarf.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+		elseif mde == "ez" then
+			Scarf.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+		elseif mde == "m" then
+			Scarf.Color = C3(100*sick.PlaybackLoudness/10000,0,0)
+		elseif mde == "L" then
+			Scarf.Color = C3(0,100*sick.PlaybackLoudness/10000,100*sick.PlaybackLoudness/10000)
+		elseif mde == "Kick" then
+			Scarf.Color = color
+		end
+	end
+end))
+local ScarfWeld = CreateWeldOrSnapOrMotor("Weld", Scarf, Torso, Scarf, CF(0.05,0.4,-0.05) * ANGLES(RAD(-3), RAD(0), RAD(0)), CF(0, 0, 0))
+Scarf.Locked = true
+CreateMesh("SpecialMesh", Scarf, "FileMesh", "99856331", "", VT(1.1,1,1.1), VT(0,0,0))
+
+local EYE = CreatePart(3, Character, "Neon", 0, 0, "Really blue", "Eye", VT(0.1,0.25,0.2),false)
+coroutine.resume(coroutine.create(function()
+	while true do
+		Swait()
+		if mde == "Corrupt" or mde == "Dep"  then
+			local val = MRANDOM(1,255)
+			EYE.Color = Color3.fromRGB(val,val,val)
+		elseif mde == "Relaxed" or mde == "C" then
+			EYE.Color = color
+		elseif mde == "Insanity" or mde == "krma" or mde == "X" then
+			EYE.Color = BrickColor.random().Color
+		elseif mde == "Vis" then
+			EYE.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+		elseif mde == "Sit" then
+			EYE.Color = Color3.fromHSV(Hue/360,1,math.clamp(sick.PlaybackLoudness/950,0,1))
+		elseif mde == 'error' then
+			EYE.Color = Color3.fromRGB(0,math.random(0,255),0)
+		elseif mde == 'nebula' then
+			EYE.Color = Color3.fromRGB(math.random(0,255),0,0)
+		elseif mde == "???" then
+			EYE.Color = C3(100*sick.PlaybackLoudness/10000,0,0)
+		elseif mde == 'Rev' then
+			EYE.Color = Color3.fromRGB(0+178*sick.PlaybackLoudness/100,0,0)
+		elseif mde == 'mnlght' then
+			EYE.Color = Color3.fromRGB(0,0+89*sick.PlaybackLoudness/100,0+18*sick.PlaybackLoudness/100)
+		elseif mde == 'death' then
+			EYE.Color = BrickColor.Random().Color
+		elseif mde == "monster" then
+			EYE.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+		elseif mde == "ez" then
+			EYE.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+		elseif mde == "m" then
+			EYE.Color = C3(100*sick.PlaybackLoudness/10000,0,0)
+		elseif mde == "L" then
+			EYE.Color = C3(0,100*sick.PlaybackLoudness/10000,100*sick.PlaybackLoudness/10000)
+		elseif mde == "Kick" then
+			EYE.Color = color
+		end
+	end
+end))
+CreateWeldOrSnapOrMotor("Weld", EYE, Head, EYE, CF(0.15,0.25,-0.53) * ANGLES(RAD(0), RAD(0), RAD(-25)), CF(0, 0, 0))
+MakeForm(EYE,"Ball")
+local EYE2 = CreatePart(3, Character, "Neon", 0, 0, "Really blue", "Eye2", VT(0.1,0.25,0.2),false)
+coroutine.resume(coroutine.create(function()
+	while true do
+		Swait()
+		if mde == "Corrupt" or mde == "Dep"  then
+			local val = MRANDOM(1,255)
+			EYE2.Color = Color3.fromRGB(val,val,val)
+		elseif mde == "Relaxed" or mde == "C" then
+			EYE2.Color = color
+		elseif mde == "Insanity" or mde == "krma" or mde == "X" then
+			EYE2.Color = BrickColor.random().Color
+		elseif mde == "Vis" then
+			EYE2.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+		elseif mde == "Sit" then
+			EYE2.Color = Color3.fromHSV(Hue/360,1,math.clamp(sick.PlaybackLoudness/950,0,1))
+		elseif mde == 'error' then
+			EYE2.Color = Color3.fromRGB(0,math.random(0,255),0)
+		elseif mde == 'nebula' then
+			EYE2.Color = Color3.fromRGB(math.random(0,255),0,0)
+		elseif mde == "???" then
+			EYE2.Color = C3(100*sick.PlaybackLoudness/10000,0,0)
+		elseif mde == 'Rev' then
+			EYE2.Color = Color3.fromRGB(0+178*sick.PlaybackLoudness/100,0,0)
+		elseif mde == 'mnlght' then
+			EYE2.Color = Color3.fromRGB(0,0+89*sick.PlaybackLoudness/100,0+18*sick.PlaybackLoudness/100)
+		elseif mde == 'death' then
+			EYE2.Color = BrickColor.Random().Color
+		elseif mde == "monster" then
+			EYE2.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+		elseif mde == "ez" then
+			EYE2.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+		elseif mde == "m" then
+			EYE2.Color = C3(100*sick.PlaybackLoudness/10000,0,0)
+		elseif mde == "L" then
+			EYE2.Color = C3(0,100*sick.PlaybackLoudness/10000,100*sick.PlaybackLoudness/10000)
+		elseif mde == "Kick" then
+			EYE2.Color = color
+		end
+	end
+end))
+CreateWeldOrSnapOrMotor("Weld", EYE2, Head, EYE2, CF(-0.15,0.25,-0.53) * ANGLES(RAD(0), RAD(0), RAD(25)), CF(0, 0, 0))
+MakeForm(EYE2,"Ball")
+
+for i = 1, 16 do
+	local FACE = CreatePart(3, Character, "Fabric", 0, 0+(i-1)/16.2, "Dark stone grey", "FaceGradient", VT(1.01,0.65,1.01),false)
+	coroutine.resume(coroutine.create(function()
+		while true do
+			Swait()
+			if mde == "Corrupt" or mde == "Dep"  then
+				local val = MRANDOM(1,255)
+				FACE.Color = Color3.fromRGB(val,val,val)
+			elseif mde == "Relaxed" or mde == "C" then
+				FACE.Color = color
+			elseif mde == "Insanity" or mde == "krma" or mde == "X" then
+				FACE.Color = BrickColor.random().Color
+			elseif mde == "Vis" then
+				FACE.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+			elseif mde == "Sit" then
+				FACE.Color = Color3.fromHSV(Hue/360,1,math.clamp(sick.PlaybackLoudness/950,0,1))
+			elseif mde == 'error' then
+				FACE.Color = Color3.fromRGB(0,math.random(0,255),0)
+			elseif mde == 'nebula' then
+				FACE.Color = Color3.fromRGB(math.random(0,255),0,0)
+			elseif mde == "???" then
+				FACE.Color = C3(100*sick.PlaybackLoudness/10000,0,0)
+			elseif mde == 'Rev' then
+				FACE.Color = Color3.fromRGB(0+178*sick.PlaybackLoudness/100,0,0)
+			elseif mde == 'mnlght' then
+				FACE.Color = Color3.fromRGB(0,0+89*sick.PlaybackLoudness/100,0+18*sick.PlaybackLoudness/100)
+			elseif mde == 'death' then
+				FACE.Color = BrickColor.Random().Color
+			elseif mde == "monster" then
+				FACE.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+			elseif mde == "ez" then
+				FACE.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+			elseif mde == "m" then
+				FACE.Color = C3(100*sick.PlaybackLoudness/10000,0,0)
+			elseif mde == "L" then
+				FACE.Color = C3(0,100*sick.PlaybackLoudness/10000,100*sick.PlaybackLoudness/10000)
+			elseif mde == "Kick" then
+				FACE.Color = color
+			end
+		end
+	end))
+	Head:FindFirstChildOfClass("SpecialMesh"):Clone().Parent = FACE
+	CreateWeldOrSnapOrMotor("Weld", Head, Head, FACE, CF(0,0.45-(i-1)/25,0), CF(0, 0, 0))
+end
+local LASTPART = Head
+for i = 1, 35 do
+	local MATH = (1-(i/40))
+	if LASTPART == Head then
+		local Horn = CreatePart(3, Character, "Neon", 0, 0, "Lily white", "Eye", VT(0.15*MATH,0.15,0.15*MATH),false)
+		CreateWeldOrSnapOrMotor("Weld", Horn, LASTPART, Horn, CF(0.3, 0.7, -0.35) * ANGLES(RAD(-55), RAD(15), RAD(-15)), CF(0, 0, 0))
+		LASTPART = Horn
+		coroutine.resume(coroutine.create(function()
+			while true do
+				Swait()
+				if mde == "Corrupt" or mde == "Dep" then	
+					local val = MRANDOM(1,255)
+					Horn.Color = Color3.fromRGB(val,val,val)
+				elseif mde == "Relaxed" or mde == "C" then
+					Horn.Color = color
+				elseif mde == "Insanity" or mde == "krma" or mde == "X" then
+					Horn.Color = BrickColor.Random().Color
+				elseif mde == "Vis" or mde == 'poisoned' then
+					Horn.Color = Color3.fromRGB(170, 0, 255)
+				elseif mde == "Sit" then
+					Horn.Color = Color3.fromHSV(Hue/360,1,math.clamp(sick.PlaybackLoudness/950,0,1))
+				elseif mde == 'error' then
+					Horn.Color = Color3.fromRGB(0,math.random(0,255),0)
+				elseif mde == 'nebula' then
+					Horn.Color = Color3.fromRGB(math.random(0,255),0,0)
+				elseif mde == "???" then
+					Horn.Color = C3(100*sick.PlaybackLoudness/10000,0,0)
+				elseif mde == 'Rev' or mde == 'unholy' then
+					Horn.Color = Color3.fromRGB(0+178*sick.PlaybackLoudness/100,0,0)
+				elseif mde == 'mnlght' then
+					Horn.Color = Color3.fromRGB(0,0+89*sick.PlaybackLoudness/100,0+18*sick.PlaybackLoudness/100)
+				elseif mde == 'death' then
+					Horn.Color = BrickColor.Random().Color
+				elseif mde == "monster" then
+					Horn.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+				elseif mde == "ez" then
+					Horn.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+				elseif mde == "m" then
+					Horn.Color = C3(100*sick.PlaybackLoudness/10000,0,0)
+				elseif mde == "L" then
+					Horn.Color = C3(0,100*sick.PlaybackLoudness/10000,100*sick.PlaybackLoudness/10000)
+				elseif mde == "Kick" then
+					Horn.Color = color
+				end
+			end
+		end))
+	else
+		local Horn = CreatePart(3, Character, "Neon", 0, 0, "Lily white", "Eye", VT(0.15*MATH,0.15,0.15*MATH),false)
+		CreateWeldOrSnapOrMotor("Weld", Horn, LASTPART, Horn, CF(0, Horn.Size.Y/1.8, 0) * ANGLES(RAD(6), RAD(2.5), RAD(0)), CF(0, 0, 0))
+		LASTPART = Horn
+		coroutine.resume(coroutine.create(function()
+			while true do
+				Swait()
+				if mde == "Corrupt" or mde == "Dep" then	
+					local val = MRANDOM(1,255)
+					Horn.Color = Color3.fromRGB(val,val,val)
+				elseif mde == "Relaxed" or mde == "C" then
+					Horn.Color = color
+				elseif mde == "Insanity" or mde == "krma" or mde == "X" then
+					Horn.Color = BrickColor.Random().Color
+				elseif mde == "Vis" or mde == 'poisoned' then
+					Horn.Color = Color3.fromRGB(170, 0, 255)
+				elseif mde == "Sit" then
+					Horn.Color = Color3.fromHSV(Hue/360,1,math.clamp(sick.PlaybackLoudness/950,0,1))
+				elseif mde == 'error' then
+					Horn.Color = Color3.fromRGB(0,math.random(0,255),0)
+				elseif mde == 'nebula' then
+					Horn.Color = Color3.fromRGB(math.random(0,255),0,0)
+				elseif mde == "???" then
+					Horn.Color = C3(100*sick.PlaybackLoudness/10000,0,0)
+				elseif mde == 'Rev' or mde == 'unholy' then
+					Horn.Color = Color3.fromRGB(0+178*sick.PlaybackLoudness/100,0,0)
+				elseif mde == 'mnlght' then
+					Horn.Color = Color3.fromRGB(0,0+89*sick.PlaybackLoudness/100,0+18*sick.PlaybackLoudness/100)
+				elseif mde == 'death' then
+					Horn.Color = BrickColor.Random().Color
+				elseif mde == "monster" then
+					Horn.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+				elseif mde == "ez" then
+					Horn.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+				elseif mde == "m" then
+					Horn.Color = C3(100*sick.PlaybackLoudness/10000,0,0)
+				elseif mde == "L" then
+					Horn.Color = C3(0,100*sick.PlaybackLoudness/10000,100*sick.PlaybackLoudness/10000)
+				elseif mde == "Kick" then
+					Horn.Color = color
+				end
+			end
+		end))
+	end
+end
+local LASTPART = Head
+for i = 1, 35 do
+	local MATH = (1-(i/40))
+	if LASTPART == Head then
+		local Horn = CreatePart(3, Character, "Neon", 0, 0, "Lily white", "Eye", VT(0.15*MATH,0.15,0.15*MATH),false)
+		CreateWeldOrSnapOrMotor("Weld", Horn, LASTPART, Horn, CF(-0.3, 0.7, -0.35) * ANGLES(RAD(-55), RAD(-15), RAD(15)), CF(0, 0, 0))
+		LASTPART = Horn
+		coroutine.resume(coroutine.create(function()
+			while true do
+				Swait()
+				if mde == "Corrupt" or mde == "Dep" then	
+					local val = MRANDOM(1,255)
+					Horn.Color = Color3.fromRGB(val,val,val)
+				elseif mde == "Relaxed" or mde == "C" then
+					Horn.Color = color
+				elseif mde == "Insanity" or mde == "krma" or mde == "X" then
+					Horn.Color = BrickColor.Random().Color
+				elseif mde == "Vis" or mde == 'poisoned' then
+					Horn.Color = Color3.fromRGB(170, 0, 255)
+				elseif mde == "Sit" then
+					Horn.Color = Color3.fromHSV(Hue/360,1,math.clamp(sick.PlaybackLoudness/950,0,1))
+				elseif mde == 'error' then
+					Horn.Color = Color3.fromRGB(0,math.random(0,255),0)
+				elseif mde == 'nebula' then
+					Horn.Color = Color3.fromRGB(math.random(0,255),0,0)
+				elseif mde == "???" then
+					Horn.Color = C3(100*sick.PlaybackLoudness/10000,0,0)
+				elseif mde == 'Rev' or mde == 'unholy' then
+					Horn.Color = Color3.fromRGB(0+178*sick.PlaybackLoudness/100,0,0)
+				elseif mde == 'mnlght' then
+					Horn.Color = Color3.fromRGB(0,0+89*sick.PlaybackLoudness/100,0+18*sick.PlaybackLoudness/100)
+				elseif mde == 'death' then
+					Horn.Color = BrickColor.Random().Color
+				elseif mde == "monster" then
+					Horn.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+				elseif mde == "ez" then
+					Horn.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+				elseif mde == "m" then
+					Horn.Color = C3(100*sick.PlaybackLoudness/10000,0,0)
+				elseif mde == "L" then
+					Horn.Color = C3(0,100*sick.PlaybackLoudness/10000,100*sick.PlaybackLoudness/10000)
+				elseif mde == "Kick" then
+					Horn.Color = color
+				end
+			end
+		end))
+	else
+		local Horn = CreatePart(3, Character, "Neon", 0, 0, "Lily white", "Eye", VT(0.15*MATH,0.15,0.15*MATH),false)
+		CreateWeldOrSnapOrMotor("Weld", Horn, LASTPART, Horn, CF(0, Horn.Size.Y/1.8, 0) * ANGLES(RAD(6), RAD(-2.5), RAD(0)), CF(0, 0, 0))
+		LASTPART = Horn
+		coroutine.resume(coroutine.create(function()
+			while true do
+				Swait()
+				if mde == "Corrupt" or mde == "Dep" then	
+					local val = MRANDOM(1,255)
+					Horn.Color = Color3.fromRGB(val,val,val)
+				elseif mde == "Relaxed" or mde == "C" then
+					Horn.Color = color
+				elseif mde == "Insanity" or mde == "krma" or mde == "X" then
+					Horn.Color = BrickColor.Random().Color
+				elseif mde == "Vis" or mde == 'poisoned' then
+					Horn.Color = Color3.fromRGB(170, 0, 255)
+				elseif mde == "Sit" then
+					Horn.Color = Color3.fromHSV(Hue/360,1,math.clamp(sick.PlaybackLoudness/950,0,1))
+				elseif mde == 'error' then
+					Horn.Color = Color3.fromRGB(0,math.random(0,255),0)
+				elseif mde == 'nebula' then
+					Horn.Color = Color3.fromRGB(math.random(0,255),0,0)
+				elseif mde == "???" then
+					Horn.Color = C3(100*sick.PlaybackLoudness/10000,0,0)
+				elseif mde == 'Rev' or mde == 'unholy' then
+					Horn.Color = Color3.fromRGB(0+178*sick.PlaybackLoudness/100,0,0)
+				elseif mde == 'mnlght' then
+					Horn.Color = Color3.fromRGB(0,0+89*sick.PlaybackLoudness/100,0+18*sick.PlaybackLoudness/100)
+				elseif mde == 'death' then
+					Horn.Color = BrickColor.Random().Color
+				elseif mde == "monster" then
+					Horn.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+				elseif mde == "ez" then
+					Horn.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+				elseif mde == "m" then
+					Horn.Color = C3(100*sick.PlaybackLoudness/10000,0,0)
+				elseif mde == "L" then
+					Horn.Color = C3(0,100*sick.PlaybackLoudness/10000,100*sick.PlaybackLoudness/10000)
+				elseif mde == "Kick" then
+					Horn.Color = color
+				end
+			end
+		end))
+	end
+end
+local LASTPART = Head
+for i = 1, 20 do
+	local MATH = (1-(i/25))
+	if LASTPART == Head then
+		local Horn = CreatePart(3, Character, "Neon", 0, 0, "Dirt brown", "Horn", VT(0.25*MATH,0.25,0.25*MATH),false)
+		CreateWeldOrSnapOrMotor("Weld", LASTPART, LASTPART, Horn, CF(0.3, 0.7, -0.35) * ANGLES(RAD(-65), RAD(16), RAD(-20)), CF(0, 0, 0))
+		LASTPART = Horn
+		coroutine.resume(coroutine.create(function()
+			while true do
+				Swait()
+				if mde == "Corrupt" or mde == "Dep" then	
+					local val = MRANDOM(1,255)
+					Horn.Color = Color3.fromRGB(val,val,val)
+				elseif mde == "Relaxed" or mde == "C" then
+					Horn.Color = color
+				elseif mde == "Insanity" or mde == "krma" or mde == "X" then
+					Horn.Color = BrickColor.Random().Color
+				elseif mde == "Vis" or mde == 'poisoned' then
+					Horn.Color = Color3.fromRGB(170, 0, 255)
+				elseif mde == "Sit" then
+					Horn.Color = Color3.fromHSV(Hue/360,1,math.clamp(sick.PlaybackLoudness/950,0,1))
+				elseif mde == 'error' then
+					Horn.Color = Color3.fromRGB(0,math.random(0,255),0)
+				elseif mde == 'nebula' then
+					Horn.Color = Color3.fromRGB(math.random(0,255),0,0)
+				elseif mde == "???" then
+					Horn.Color = C3(100*sick.PlaybackLoudness/10000,0,0)
+				elseif mde == 'Rev' or mde == 'unholy' then
+					Horn.Color = Color3.fromRGB(0+178*sick.PlaybackLoudness/100,0,0)
+				elseif mde == 'mnlght' then
+					Horn.Color = Color3.fromRGB(0,0+89*sick.PlaybackLoudness/100,0+18*sick.PlaybackLoudness/100)
+				elseif mde == 'death' then
+					Horn.Color = BrickColor.Random().Color
+				elseif mde == "monster" then
+					Horn.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+				elseif mde == "ez" then
+					Horn.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+				elseif mde == "m" then
+					Horn.Color = C3(100*sick.PlaybackLoudness/10000,0,0)
+				elseif mde == "L" then
+					Horn.Color = C3(0,100*sick.PlaybackLoudness/10000,100*sick.PlaybackLoudness/10000)
+				elseif mde == "Kick" then
+					Horn.Color = color
+				end
+			end
+		end))
+	else
+		local Horn = CreatePart(3, Character, "Neon", 0, 0, "Dirt brown", "Horn", VT(0.25*MATH,0.25,0.25*MATH),false)
+		CreateWeldOrSnapOrMotor("Weld", LASTPART, LASTPART, Horn, CF(0, Horn.Size.Y/1.8, 0) * ANGLES(RAD(6), RAD(-1), RAD(0)), CF(0, 0, 0))
+		LASTPART = Horn
+		coroutine.resume(coroutine.create(function()
+			while true do
+				Swait()
+				if mde == "Corrupt" or mde == "Dep" then	
+					local val = MRANDOM(1,255)
+					Horn.Color = Color3.fromRGB(val,val,val)
+				elseif mde == "Relaxed" or mde == "C" then
+					Horn.Color = color
+				elseif mde == "Insanity" or mde == "krma" or mde == "X" then
+					Horn.Color = BrickColor.Random().Color
+				elseif mde == "Vis" or mde == 'poisoned' then
+					Horn.Color = Color3.fromRGB(170, 0, 255)
+				elseif mde == "Sit" then
+					Horn.Color = Color3.fromHSV(Hue/360,1,math.clamp(sick.PlaybackLoudness/950,0,1))
+				elseif mde == 'error' then
+					Horn.Color = Color3.fromRGB(0,math.random(0,255),0)
+				elseif mde == 'nebula' then
+					Horn.Color = Color3.fromRGB(math.random(0,255),0,0)
+				elseif mde == "???" then
+					Horn.Color = C3(100*sick.PlaybackLoudness/10000,0,0)
+				elseif mde == 'Rev' or mde == 'unholy' then
+					Horn.Color = Color3.fromRGB(0+178*sick.PlaybackLoudness/100,0,0)
+				elseif mde == 'mnlght' then
+					Horn.Color = Color3.fromRGB(0,0+89*sick.PlaybackLoudness/100,0+18*sick.PlaybackLoudness/100)
+				elseif mde == 'death' then
+					Horn.Color = BrickColor.Random().Color
+				elseif mde == "monster" then
+					Horn.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+				elseif mde == "ez" then
+					Horn.Color = Color3.fromRGB(0+170*sick.PlaybackLoudness/1000,0,0+170*sick.PlaybackLoudness/1000)
+				elseif mde == "m" then
+					Horn.Color = C3(100*sick.PlaybackLoudness/10000,0,0)
+				elseif mde == "L" then
+					Horn.Color = C3(0,100*sick.PlaybackLoudness/10000,100*sick.PlaybackLoudness/10000)
+				elseif mde == "Kick" then
+					Horn.Color = color
+				end
+			end
+		end))
+	end
+end
+local LASTPART = Head
