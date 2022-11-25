@@ -1,0 +1,11 @@
+
+local function Align(Handle, Where, Pos, Rot)
+	Handle:BreakJoints()
+	Handle.CFrame = Where.CFrame *Pos *Rot
+end
+
+task.spawn(function()
+	while task.wait() do
+		Align(game.Players.LocalPlayer.Character["scytheblack"].Handle, game.Players.LocalPlayer.Character["Right Arm"], CFrame.new(0, -1.80, -0.5), CFrame.Angles(0, 190, -95.75))
+	end
+end)
