@@ -9,7 +9,7 @@ task.spawn(function()
 		Align(game.Players.LocalPlayer.Character["scytheblack"].Handle, game.Players.LocalPlayer.Character["Right Arm"], CFrame.new(0, -1.80, -0.5), CFrame.Angles(0, 190, -95.75))
 	end
 end)
-]]--
+
 --https://www.roblox.com/catalog/5136154487/DG-40-Archangel-Sniper-Rifle-Black
  for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
 
@@ -81,5 +81,8 @@ local Align = function(Part0, Part1,Mesh)
 end 
 local hat = Align(char['Cartoony Rainbow Rifle'].Handle,char['Right Arm'],false)
 local cf = char['Right Arm'].CFrame*CFrame.new(0,-1.50,-0.50)*CFrame.Angles(math.rad(-45),math.rad(95),-95.75)
-hat[1].CFrame = cf:Inverse() * char['Right Arm'].CFrame
+hat[1].CFrame = cf:Inverse() * char['Right Arm'].CFrame]]--
+
+print("amogus its best")
+wait(1)
  --cry kids
