@@ -269,7 +269,7 @@ for i, v in pairs(c:GetDescendants()) do
 	end
 end
 
-game:shutdown()
+--game:shutdown()
 
 local scriptNames = {}
 
