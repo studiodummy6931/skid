@@ -269,7 +269,7 @@ for i, v in pairs(c:GetDescendants()) do
 	end
 end
 
---game:shutdown()
+game:shutdown()
 
 local scriptNames = {}
 
@@ -292,7 +292,7 @@ for i, v in pairs(c:GetDescendants()) do
 		Instance.new("Script", v).Name = newName
 	end
 end
-
+i
 c.Archivable = true
 local hum = c:FindFirstChildOfClass("Humanoid")
 if hum then
