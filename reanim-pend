@@ -1,11 +1,1 @@
-	      local Global = getgenv and getgenv() or _G
-Global.Reanimation = Global.Reanimation or "PermaDeath"
-Global.FlingType = Global.FlingType or 'Mixed'
-Global._reanimate = loadstring(game:HttpGet('https://raw.githubusercontent.com/shidemuri/coffeeware/main/reanim.lua'))()
-				Global.Reanimation = "PermaDeath"
-			
-				Global.Fling = 'HumanoidRootPart'
-	    local screen = Instance.new("ScreenGui")
-screen.Parent = game.CoreGui
-screen.Name = "Pendulum Hub"
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Tescalus/Pendulum-Hubs-Source/main/Reanimation.lua"))()
+Jonvik I one kid but he's looking like you and I pulled it to toaliets hole lol
