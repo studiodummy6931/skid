@@ -1,11 +1,5 @@
-
-local function Align(Handle, Where, Pos, Rot)
-	Handle:BreakJoints()
-	Handle.CFrame = Where.CFrame *Pos *Rot
-end
-
-task.spawn(function()
-	while task.wait() do
-		Align(game.Players.LocalPlayer.Character["scytheblack"].Handle, game.Players.LocalPlayer.Character["Right Arm"], CFrame.new(0, -1.80, -0.5), CFrame.Angles(0, 190, -95.75))
-	end
-end)
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Y'all has trash🤓", "All")
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Y'all are kid!", "All")
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("I am 15 Years old🤓", "All")
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("my I.P Adress has 217.05.219.131", "All")
+game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Mine name is jonvik and I am using A50 And I have one brohter🤓", "All")
