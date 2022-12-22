@@ -1,16 +1,4 @@
-local function Align(Handle, Where, Pos, Rot)
-	Handle:BreakJoints()
-	Handle.CFrame = Where.CFrame *Pos *Rot
-end
-
-task.spawn(function()
-	while task.wait() do
-		Align(game.Players.LocalPlayer.Character["Starslayer Railgun"].Handle, game.Players.LocalPlayer.Character["Right Arm"], CFrame.new(0, -1.25, -0.5), CFrame.Angles(0, 190, -95))
-	end
-end)
-
---reanimate by MyWorld#4430 discord.gg/pYVHtSJmEY
---the code that looks trash and works great
+--thanks to MW about for leaked these reanim.
 local healthHide = false --moves your head away every 3 seconds so players dont see your health bar (alignmode 4 only)
 local reclaim = true --if you lost control over a part this will move your primary part to the part so you get it back (alignmode 4)
 local novoid = true --prevents parts from going under workspace.FallenPartsDestroyHeight if you control them (alignmode 4 only)
