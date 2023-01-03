@@ -1,0 +1,8 @@
+local plr = game.Players.LocalPlayer
+game:GetService("RunService").RenderStepped:Connect(function()
+    settings().Physics.PhysicsEnvironmentalThrottle = Enum.EnviromentalPhysicsThrottle.Disabled
+    settings().Physics.AllowSleep = false
+    game.Players.LocalPlayer.ReplicationFocus = workspace
+    sethiddenproperty(plr,"SimulationRadius",1000)
+    sethiddenproperty(plr,"MaxSimulationRadius",1000)
+end)
